@@ -1,16 +1,11 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import Ximage from "./images/XImage_circle.png"
 import "./mainPage.css";
+import MyContext from "../../context/Context";
 
 function MainPage() {
 
-  const [formData, setFormData] = useState({
-    title: "",
-    image: "",
-    url: "",
-    category: "",
-    description: ""
-  });
+  const { formData, setFormData, fetchAddData } = useContext(MyContext);
 
   const [imageFile, setImageFile] = useState([]);
 
@@ -22,13 +17,23 @@ function MainPage() {
 
   function handleImage({ target }) {
     const { files } = target;
-    setImageFile((prev) => ([...prev, URL.createObjectURL(files[0])]));
-    setFormData((prev) => ({ ...prev, image: files[0] }))
+    if (files.length > 0) {
+      setImageFile((prev) => ([...prev, URL.createObjectURL(files[0])]));
+      setFormData((prev) => ({ ...prev, image: files[0] }))
+    }
+  }
 
+  function handleMusic({ target }) {
+    const { files } = target;
+    if (files.length > 0) {
+      setFormData((prev) => ({ ...prev, music: files[0] }))
+    }
   }
 
   function removeItem() {
     setImageFile([]);
+    const inputImage = document.getElementById("input-image");
+    inputImage.value = "";
   }
 
   return (
@@ -57,6 +62,7 @@ function MainPage() {
                 alt="remover"
               />
               <img
+                id="image_music"
                 src={imageFile[0]}
                 alt={`${imageFile[0]}`}
               />
@@ -74,19 +80,21 @@ function MainPage() {
             multiple
           />
         </label>
-        <label className="label_main_page" htmlFor="input_url">
-          <p>Url:</p>
+        <label className="label_main_page" htmlFor="input_music">
+          <p>Musica:</p>
           <input
-            onChange={handleChange}
-            id="input_url"
-            type="url"
-            name="url"
+            onChange={handleMusic}
+            id="input_music"
+            type="file"
+            name="music"
+            accept="audio/mp3"
+            multiple
           />
         </label>
-        <label className="label_main_page" htmlFor="input_url">
-          <p>Url:</p>
+        <label className="label_main_page" htmlFor="input_category">
+          <p>Categoria:</p>
           <select onChange={handleChange} name="category" id="input_category">
-            <option value="">Escolha a categoria</option>
+            <option value=""></option>
             <option value="trance">Trance</option>
             <option value="anos 80">Anos 80</option>
             <option value="rock'n roll">Rock in Roll</option>
@@ -100,11 +108,11 @@ function MainPage() {
             name="description"
             id="input_description"
             cols="30"
-            rows="10"
+            rows="8"
           >
           </textarea>
         </label>
-        <button type="submit">Enviar</button>
+        <button type="button" onClick={fetchAddData}>Enviar</button>
       </form>
     </div>
   );
