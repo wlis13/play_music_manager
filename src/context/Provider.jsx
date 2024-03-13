@@ -53,7 +53,7 @@ function Provider({ children }) {
       body: JSON.stringify(formData),
     });
     const response = await promise.json();
-    alert(response)
+    alert(response.message)
   }
 
   const providerValue = {
