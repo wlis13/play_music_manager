@@ -1,0 +1,32 @@
+.container_main_page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.form_main_page {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  border: 1px solid red;
+}
+
+.form_main_page p {
+  font-size: 18pt;
+  font-weight: 600;
+}
+
+.label_main_page p {
+  font-size: 18pt;
+  font-weight: 600;
+}
+
+.label_main_page input {
+  font-size: 18pt;
+  padding: 15px 0px;
+  width: 100%;
+}
+
+.label_main_page input:focus {
+  outline: none;
+}
