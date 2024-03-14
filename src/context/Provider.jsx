@@ -13,37 +13,35 @@ function Provider({ children }) {
   });
 
 
-  async function fetchAddImage() {
-    const newImage = formData.image;
-    const url = "https://play-music-service.vercel.app/add_image_firebase"
-    const promise = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newImage)
-    });
-    const response = await promise.json();
-    setFormData((prev) => ({ ...prev, image: response }))
-  }
+  // async function fetchAddImage() {
+  //   const url = "https://play-music-service.vercel.app/add_image_firebase";
 
-  async function fetchAddMusic() {
-    const newMusic = formData.music;
-    const url = "https://play-music-service.vercel.app/add_music_firebase"
-    const promise = await fetch(url, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newMusic)
-    });
-    const response = await promise.json();
-    setFormData((prev) => ({ ...prev, music: response }))
-  }
+  //   const formDataFormatte = new FormData();
+  //   formDataFormatte.append("file", formData.image);
+
+  //   const promise = await fetch(url, {
+  //     method: "POST",
+  //     body: formDataFormatte
+  //   });
+  //   const response = await promise.json();
+  //   setFormData((prev) => ({ ...prev, image: response.url }))
+  // }
+
+  // async function fetchAddMusic() {
+  //   const url = "https://play-music-service.vercel.app/add_music_firebase";
+
+  //   const formDataFormatte = new FormData();
+  //   formDataFormatte.append("file", formData.music);
+
+  //   const promise = await fetch(url, {
+  //     method: "POST",
+  //     body: formDataFormatte
+  //   });
+  //   const response = await promise.json();
+  //   setFormData((prev) => ({ ...prev, music: response.url }))
+  // }
 
   async function fetchAddData() {
-    await fetchAddImage()
-    await fetchAddMusic()
     const url = "https://play-music-service.vercel.app/add_music"
     const promise = await fetch(url, {
       method: "POST",
@@ -53,13 +51,13 @@ function Provider({ children }) {
       body: JSON.stringify(formData),
     });
     const response = await promise.json();
-    alert(response.message)
+    alert(response.message);
   }
 
   const providerValue = {
     formData,
     setFormData,
-    fetchAddData
+    fetchAddData,
   }
 
   return (
