@@ -13,6 +13,8 @@
 .form_main_page {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 10px;
 }
 
@@ -23,6 +25,7 @@
 
 .label_main_page {
   display: flex;
+  width: 100%;
   flex-direction: column;
   border: 1px solid rgb(0, 0, 0, 0.5);
   border-radius: 10px;
@@ -36,9 +39,15 @@
 }
 
 .label_main_page input {
-  font-size: 22pt;
+  font-size: 18pt;
   padding: 15px 0px;
   width: 99%;
+  border: none;
+  border-bottom: 1px solid black;
+}
+
+.label_main_page input:focus {
+  outline: none;
 }
 
 .label_main_page select {
@@ -53,14 +62,12 @@
 }
 
 .label_main_page option {
-  font-size: 18pt;
+  font-size: 10pt;
   width: 100%;
   font-weight: 600;
+  margin-top: 20px;
 }
 
-.label_main_page input:focus {
-  outline: none;
-}
 
 .label_main_page textarea {
   font-size: 18pt;
@@ -83,6 +90,7 @@
   color: white;
   margin-top: 15px;
   border-radius: 5px;
+  width: 70%;
 }
 
 #image_message {

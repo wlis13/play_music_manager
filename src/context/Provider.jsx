@@ -36,36 +36,47 @@ function Provider({ children }) {
     setMusics(response);
   }
 
-  // async function fetchAddImage() {
-  //   const url = "https://playmusicservice.vercel.app/add_image_firebase";
+  async function fetchAddImage(image) {
+    const url = "https://playmusicservice.vercel.app/add_image_firebase";
 
-  //   const formDataFormatte = new FormData();
-  //   formDataFormatte.append("file", formData.image);
+    const formDataFormatte = new FormData();
+    formDataFormatte.append("file", image);
 
-  //   const promise = await fetch(url, {
-  //     method: "POST",
-  //     body: formDataFormatte
-  //   });
-  //   const response = await promise.json();
-  //   setFormData((prev) => ({ ...prev, image: response.url }))
-  // }
+    const promise = await fetch(url, {
+      method: "POST",
+      body: formDataFormatte
+    });
+    const response = await promise.json();
+    setFormData((prev) => ({ ...prev, image: response.url }));
+  }
 
-  // async function fetchAddMusic() {
-  //   const url = "https://playmusicservice.vercel.app/add_music_firebase";
+  async function fetchAddMusic(music) {
+    const url = "https://playmusicservice.vercel.app/add_music_firebase";
 
-  //   const formDataFormatte = new FormData();
-  //   formDataFormatte.append("file", formData.music);
+    const formDataFormatte = new FormData();
+    formDataFormatte.append("file", music);
 
-  //   const promise = await fetch(url, {
-  //     method: "POST",
-  //     body: formDataFormatte
-  //   });
-  //   const response = await promise.json();
-  //   setFormData((prev) => ({ ...prev, music: response.url }))
-  // }
+    const promise = await fetch(url, {
+      method: "POST",
+      body: formDataFormatte
+    });
+    const response = await promise.json();
+    setFormData((prev) => ({ ...prev, music: response.url }))
+  }
+
+
+  function clearData() {
+    setFormData({
+      title: "",
+      image: "",
+      music: "",
+      category: "",
+      description: ""
+    })
+  }
 
   async function fetchAddData() {
-    const url = "https://playmusicservice.vercel.app/add_music"
+    const url = "http://localhost:3001/add_music"
     const urlUpdate = "http://localhost:3001/update_music";
     const promise = await fetch(isUpdate.is ? urlUpdate : url, {
       method: isUpdate.is ? "PUT" : "POST",
@@ -76,6 +87,8 @@ function Provider({ children }) {
     });
     const response = await promise.json();
     alert(response.message);
+    clearData();
+    setIsUpdate({ music: {}, is: false });
   }
 
   useEffect(() => {
@@ -86,6 +99,8 @@ function Provider({ children }) {
     formData,
     setFormData,
     handleChange,
+    fetchAddImage,
+    fetchAddMusic,
     fetchAddData,
     musics,
     setIsUpdate,

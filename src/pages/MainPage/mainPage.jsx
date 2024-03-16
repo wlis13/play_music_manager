@@ -6,14 +6,14 @@ import Header from "../Header/header";
 
 function MainPage() {
 
-  const { setFormData, fetchAddData, isUpdate, handleChange } = useContext(MyContext);
+  const { fetchAddData, isUpdate, handleChange, fetchAddImage, fetchAddMusic } = useContext(MyContext);
 
   const [imageFile, setImageFile] = useState([]);
 
   function clearInputs() {
     document.getElementById("input_title").value = "";
     document.getElementById("input_music").value = "";
-    // document.getElementById("input_image").value = "";
+    document.getElementById("input_image").value = "";
     document.getElementById("input_category").value = "";
     document.getElementById("input_description").value = "";
 
@@ -23,21 +23,19 @@ function MainPage() {
     const { files } = target;
     if (files.length > 0) {
       setImageFile((prev) => ([...prev, URL.createObjectURL(files[0])]));
-      setFormData((prev) => ({ ...prev, image: files[0] }))
+      fetchAddImage(files[0]);
     }
   }
 
-  // function handleMusic({ target }) {
-  //   const { files } = target;
-  //   if (files.length > 0) {
-  //     setFormData((prev) => ({ ...prev, music: files[0] }))
-  //   }
-  // }
+  function handleMusic({ target }) {
+    const { files } = target;
+    if (files.length > 0) {
+      fetchAddMusic(files[0]);
+    }
+  }
 
   function removeItem() {
     setImageFile([]);
-    const inputImage = document.getElementById("input-image");
-    inputImage.value = "";
   }
 
   return (
@@ -98,7 +96,7 @@ function MainPage() {
             multiple
           />
         </label>
-        {/* <label className="label_main_page" htmlFor="input_music">
+        <label className="label_main_page" htmlFor="input_music">
           <p>Musica:</p>
           <input
             onChange={handleMusic}
@@ -108,25 +106,7 @@ function MainPage() {
             accept="audio/mp3"
             multiple
           />
-        </label> */}
-        <label className="label_main_page" htmlFor="input_music">
-          <p>Musica:</p>
-          <input
-            onChange={handleChange}
-            id="input_music"
-            type="text"
-            name="music"
-          />
         </label>
-        {/* <label className="label_main_page" htmlFor="input_image">
-          <p>Imagem:</p>
-          <input
-            onChange={handleChange}
-            id="input_image"
-            type="text"
-            name="image"
-          />
-        </label> */}
 
         <label className="label_main_page" htmlFor="input_category">
           <p>Categoria:</p>
@@ -152,17 +132,15 @@ function MainPage() {
             id="input_description"
             cols="30"
             rows="8"
-            defaultValue={isUpdate.is && isUpdate.music.description}
+            defaultValue={isUpdate.is ? isUpdate.music.description : ''}
           >
           </textarea>
         </label>
         <button
           type="button"
-          onClick={() => {
-            fetchAddData();
-            setTimeout(() => {
-              clearInputs();
-            }, 3000);
+          onClick={async () => {
+            await fetchAddData();
+            clearInputs();
           }}
         >
           Enviar
