@@ -54,7 +54,7 @@ function MainPage() {
             defaultValue={isUpdate.is ? isUpdate.music.title : null}
           />
         </label>
-        <p>Imagem:</p>
+        <p id="title_image">Imagem:</p>
         <div className="container_show_image">
           {imageFile
             ?
