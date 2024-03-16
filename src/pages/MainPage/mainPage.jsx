@@ -6,19 +6,14 @@ import Header from "../Header/header";
 
 function MainPage() {
 
-  const { formData, setFormData, fetchAddData } = useContext(MyContext);
+  const { setFormData, fetchAddData, isUpdate, handleChange } = useContext(MyContext);
 
   const [imageFile, setImageFile] = useState([]);
-
-  function handleChange({ target }) {
-    const { name, value } = target;
-    setFormData({ ...formData, [name]: value });
-  }
 
   function clearInputs() {
     document.getElementById("input_title").value = "";
     document.getElementById("input_music").value = "";
-    document.getElementById("input_image").value = "";
+    // document.getElementById("input_image").value = "";
     document.getElementById("input_category").value = "";
     document.getElementById("input_description").value = "";
 
@@ -58,6 +53,7 @@ function MainPage() {
             id="input_title"
             type="text"
             name="title"
+            defaultValue={isUpdate.is ? isUpdate.music.title : null}
           />
         </label>
         <p>Imagem:</p>
@@ -71,11 +67,23 @@ function MainPage() {
                 src={Ximage}
                 alt="remover"
               />
-              <img
-                id="image_music"
-                src={imageFile}
-                alt={`${imageFile}`}
-              />
+              <div className="container_image_input">
+                <img
+                  id="image_music"
+                  src={isUpdate.is ? isUpdate.music.image : imageFile}
+                  alt={`${imageFile}`}
+                />
+                {
+                  isUpdate.is &&
+                  <input
+                    id="input_update_image"
+                    type="text"
+                    defaultValue={isUpdate.is && isUpdate.music.image}
+                    onChange={handleChange}
+                    name="image"
+                  />
+                }
+              </div>
             </div>
             : <p id="image_message">Imagem aqui</p>
           }
@@ -122,7 +130,12 @@ function MainPage() {
 
         <label className="label_main_page" htmlFor="input_category">
           <p>Categoria:</p>
-          <select onChange={handleChange} name="category" id="input_category">
+          <select
+            onChange={handleChange}
+            name="category"
+            id="input_category"
+            defaultValue={isUpdate.is && isUpdate.music.category}
+          >
             <option value=""></option>
             <option value="trance">Trance</option>
             <option value="anos 80">Anos 80</option>
@@ -139,6 +152,7 @@ function MainPage() {
             id="input_description"
             cols="30"
             rows="8"
+            defaultValue={isUpdate.is && isUpdate.music.description}
           >
           </textarea>
         </label>

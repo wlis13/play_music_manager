@@ -13,8 +13,18 @@ function Provider({ children }) {
   });
 
   const [musics, setMusics] = useState([]);
+  const [isUpdate, setIsUpdate] = useState({
+    music: {},
+    is: false,
+  });
+
+  function handleChange({ target }) {
+    const { name, value } = target;
+    setFormData({ ...formData, [name]: value });
+  }
 
   async function fetchMusics() {
+
     const url = "https://playmusicservice.vercel.app/all_musics";
     const promise = await fetch(url, {
       method: "GET",
@@ -56,8 +66,9 @@ function Provider({ children }) {
 
   async function fetchAddData() {
     const url = "https://playmusicservice.vercel.app/add_music"
-    const promise = await fetch(url, {
-      method: "POST",
+    const urlUpdate = "http://localhost:3001/update_music";
+    const promise = await fetch(isUpdate.is ? urlUpdate : url, {
+      method: isUpdate.is ? "PUT" : "POST",
       headers: {
         "Content-Type": "application/json",
       },
@@ -74,8 +85,11 @@ function Provider({ children }) {
   const providerValue = {
     formData,
     setFormData,
+    handleChange,
     fetchAddData,
-    musics
+    musics,
+    setIsUpdate,
+    isUpdate
   }
 
   return (
