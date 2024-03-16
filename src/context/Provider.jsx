@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import MyContext from "./Context";
 import PropTypes from "prop-types";
 
@@ -12,8 +12,22 @@ function Provider({ children }) {
     description: ""
   });
 
+  const [musics, setMusics] = useState([]);
+
+  async function fetchMusics() {
+    const url = "https://playmusicservice.vercel.app/all_musics";
+    const promise = await fetch(url, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    });
+    const response = await promise.json();
+    setMusics(response);
+  }
+
   // async function fetchAddImage() {
-  //   const url = "https://play-music-service.vercel.app/add_image_firebase";
+  //   const url = "https://playmusicservice.vercel.app/add_image_firebase";
 
   //   const formDataFormatte = new FormData();
   //   formDataFormatte.append("file", formData.image);
@@ -27,7 +41,7 @@ function Provider({ children }) {
   // }
 
   // async function fetchAddMusic() {
-  //   const url = "https://play-music-service.vercel.app/add_music_firebase";
+  //   const url = "https://playmusicservice.vercel.app/add_music_firebase";
 
   //   const formDataFormatte = new FormData();
   //   formDataFormatte.append("file", formData.music);
@@ -53,10 +67,15 @@ function Provider({ children }) {
     alert(response.message);
   }
 
+  useEffect(() => {
+    fetchMusics()
+  }, [])
+
   const providerValue = {
     formData,
     setFormData,
     fetchAddData,
+    musics
   }
 
   return (

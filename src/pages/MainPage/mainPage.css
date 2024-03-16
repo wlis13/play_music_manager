@@ -4,8 +4,10 @@
 
 .container_main_page {
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
 }
 
 .form_main_page {

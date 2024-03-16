@@ -1,13 +1,14 @@
-import { useContext } from "react";
-// import Ximage from "./images/XImage_circle.png"
+import { useContext, useState } from "react";
+import Ximage from "./images/XImage_circle.png"
 import "./mainPage.css";
 import MyContext from "../../context/Context";
+import Header from "../Header/header";
 
 function MainPage() {
 
   const { formData, setFormData, fetchAddData } = useContext(MyContext);
 
-  // const [imageFile, setImageFile] = useState([]);
+  const [imageFile, setImageFile] = useState([]);
 
   function handleChange({ target }) {
     const { name, value } = target;
@@ -23,13 +24,13 @@ function MainPage() {
 
   }
 
-  // function handleImage({ target }) {
-  //   const { files } = target;
-  //   if (files.length > 0) {
-  //     setImageFile((prev) => ([...prev, URL.createObjectURL(files[0])]));
-  //     setFormData((prev) => ({ ...prev, image: files[0] }))
-  //   }
-  // }
+  function handleImage({ target }) {
+    const { files } = target;
+    if (files.length > 0) {
+      setImageFile((prev) => ([...prev, URL.createObjectURL(files[0])]));
+      setFormData((prev) => ({ ...prev, image: files[0] }))
+    }
+  }
 
   // function handleMusic({ target }) {
   //   const { files } = target;
@@ -38,14 +39,15 @@ function MainPage() {
   //   }
   // }
 
-  // function removeItem() {
-  //   setImageFile([]);
-  //   const inputImage = document.getElementById("input-image");
-  //   inputImage.value = "";
-  // }
+  function removeItem() {
+    setImageFile([]);
+    const inputImage = document.getElementById("input-image");
+    inputImage.value = "";
+  }
 
   return (
     <div className="container_main_page">
+      <Header />
       <form className="form_main_page">
         <label
           className="label_main_page"
@@ -58,7 +60,7 @@ function MainPage() {
             name="title"
           />
         </label>
-        {/* <p>Imagem:</p>
+        <p>Imagem:</p>
         <div className="container_show_image">
           {imageFile
             ?
@@ -77,8 +79,8 @@ function MainPage() {
             </div>
             : <p id="image_message">Imagem aqui</p>
           }
-        </div> */}
-        {/* <label className="label_main_page" htmlFor="input-image">
+        </div>
+        <label className="label_main_page" htmlFor="input-image">
           <input
             className='input_link_add'
             id='input-image'
@@ -87,7 +89,7 @@ function MainPage() {
             onChange={handleImage}
             multiple
           />
-        </label> */}
+        </label>
         {/* <label className="label_main_page" htmlFor="input_music">
           <p>Musica:</p>
           <input
@@ -108,7 +110,7 @@ function MainPage() {
             name="music"
           />
         </label>
-        <label className="label_main_page" htmlFor="input_image">
+        {/* <label className="label_main_page" htmlFor="input_image">
           <p>Imagem:</p>
           <input
             onChange={handleChange}
@@ -116,7 +118,7 @@ function MainPage() {
             type="text"
             name="image"
           />
-        </label>
+        </label> */}
 
         <label className="label_main_page" htmlFor="input_category">
           <p>Categoria:</p>
@@ -125,7 +127,8 @@ function MainPage() {
             <option value="trance">Trance</option>
             <option value="anos 80">Anos 80</option>
             <option value="rock'n roll">Rock in Roll</option>
-            <option value="hip-hop">Hip-Hop </option>
+            <option value="hip-hop">Hip-Hop</option>
+            <option value="crista">Cristã</option>
           </select>
         </label>
         <label className="label_main_page" htmlFor="input_description">

@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom"
 import Provider from "./context/Provider"
 import MainPage from "./pages/MainPage/mainPage"
+import Update from "./components/Update/update"
 
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
     <Provider>
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/update" component={Update} />
       </Switch>
     </Provider>
   )
