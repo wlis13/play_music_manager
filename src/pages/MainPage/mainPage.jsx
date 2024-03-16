@@ -14,6 +14,14 @@ function MainPage() {
     setFormData({ ...formData, [name]: value });
   }
 
+  function clearInputs() {
+    document.getElementById("input_title").value = "";
+    document.getElementById("input_music").value = "";
+    document.getElementById("input_image").value = "";
+    document.getElementById("input_category").value = "";
+    document.getElementById("input_description").value = "";
+
+  }
 
   // function handleImage({ target }) {
   //   const { files } = target;
@@ -131,7 +139,17 @@ function MainPage() {
           >
           </textarea>
         </label>
-        <button type="button" onClick={fetchAddData}>Enviar</button>
+        <button
+          type="button"
+          onClick={() => {
+            fetchAddData();
+            setTimeout(() => {
+              clearInputs();
+            }, 3000);
+          }}
+        >
+          Enviar
+        </button>
       </form>
     </div>
   );

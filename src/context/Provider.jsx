@@ -12,7 +12,6 @@ function Provider({ children }) {
     description: ""
   });
 
-
   // async function fetchAddImage() {
   //   const url = "https://play-music-service.vercel.app/add_image_firebase";
 
@@ -42,7 +41,7 @@ function Provider({ children }) {
   // }
 
   async function fetchAddData() {
-    const url = "https://play-music-service.vercel.app/add_music"
+    const url = "https://playmusicservice.vercel.app/add_music"
     const promise = await fetch(url, {
       method: "POST",
       headers: {
