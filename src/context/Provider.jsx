@@ -76,8 +76,8 @@ function Provider({ children }) {
   }
 
   async function fetchAddData() {
-    const url = "http://localhost:3001/add_music"
-    const urlUpdate = "http://localhost:3001/update_music";
+    const url = "https://playmusicservice.vercel.app/add_music"
+    const urlUpdate = "https://playmusicservice.vercel.app/update_music";
     const promise = await fetch(isUpdate.is ? urlUpdate : url, {
       method: isUpdate.is ? "PUT" : "POST",
       headers: {
