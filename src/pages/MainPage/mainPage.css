@@ -3,6 +3,10 @@
   margin: 0;
 }
 
+::placeholder {
+  color: rgb(255, 255, 255, 0.5);
+}
+
 .container_main_page {
   display: flex;
   flex-direction: column;

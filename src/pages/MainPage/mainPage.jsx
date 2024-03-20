@@ -96,6 +96,16 @@ function MainPage() {
             multiple
           />
         </label>
+        <label className="label_main_page" htmlFor="input_url_image">
+          <p>url da imagem:</p>
+          <input
+            id="input_url_image"
+            type="text"
+            placeholder="url da imagem"
+            name="image"
+            onChange={handleChange}
+          />
+        </label>
         <label className="label_main_page" htmlFor="input_music">
           <p>Musica:</p>
           <input
@@ -107,7 +117,16 @@ function MainPage() {
             multiple
           />
         </label>
-
+        <label className="label_main_page" htmlFor="input_url_music">
+          <p>url da musica:</p>
+          <input
+            id="input_url_music"
+            type="text"
+            placeholder="url da música"
+            name="music"
+            onChange={handleChange}
+          />
+        </label>
         <label className="label_main_page" htmlFor="input_category">
           <p>Categoria:</p>
           <select
