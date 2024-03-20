@@ -121,7 +121,8 @@ function MainPage() {
             <option value="anos 80">Anos 80</option>
             <option value="rock'n roll">Rock in Roll</option>
             <option value="hip-hop">Hip-Hop</option>
-            <option value="crista">Cristã</option>
+            <option value="cristã">Cristã</option>
+            <option value="reggae">Reggae</option>
           </select>
         </label>
         <label className="label_main_page" htmlFor="input_description">
