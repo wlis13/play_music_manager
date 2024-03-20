@@ -103,7 +103,6 @@ function MainPage() {
             id="input_music"
             type="file"
             name="music"
-            accept="audio/mp3"
             multiple
           />
         </label>
