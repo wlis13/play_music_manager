@@ -10,15 +10,6 @@ function MainPage() {
 
   const [imageFile, setImageFile] = useState([]);
 
-  function clearInputs() {
-    document.getElementById("input_title").value = "";
-    document.getElementById("input_music").value = "";
-    document.getElementById("input_image").value = "";
-    document.getElementById("input_category").value = "";
-    document.getElementById("input_description").value = "";
-
-  }
-
   function handleImage({ target }) {
     const { files } = target;
     if (files.length > 0) {
@@ -158,10 +149,7 @@ function MainPage() {
         </label>
         <button
           type="button"
-          onClick={async () => {
-            await fetchAddData();
-            clearInputs();
-          }}
+          onClick={fetchAddData}
         >
           Enviar
         </button>

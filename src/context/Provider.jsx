@@ -18,6 +18,15 @@ function Provider({ children }) {
     is: false,
   });
 
+  function clearInputs() {
+    document.getElementById("input_title").value = "";
+    document.getElementById("input_music").value = "";
+    document.getElementById("input_image").value = "";
+    document.getElementById("input_category").value = "";
+    document.getElementById("input_description").value = "";
+  }
+
+
   function handleChange({ target }) {
     const { name, value } = target;
     setFormData({ ...formData, [name]: value });
@@ -89,6 +98,7 @@ function Provider({ children }) {
     alert(response.message);
     clearData();
     setIsUpdate({ music: {}, is: false });
+    clearInputs();
   }
 
   useEffect(() => {
