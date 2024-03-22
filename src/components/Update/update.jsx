@@ -11,6 +11,7 @@ function Update() {
   function startUpdate(music) {
     setIsUpdate(({ music: music, is: true }));
     setFormData({
+      id: music._id,
       title: music.title,
       image: music.image,
       music: music.music,
