@@ -92,7 +92,7 @@ function Provider({ children }) {
     setIsUpdate({ music: {}, is: false });
     setTimeout(() => {
       window.location.reload();
-    }, 2000);
+    }, 1000);
   }
 
   useEffect(() => {
