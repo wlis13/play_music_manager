@@ -129,6 +129,7 @@ function MainPage() {
             <option value=""></option>
             <option value="trance">Trance</option>
             <option value="clássicas">Clássicas</option>
+            <option value="pop">Pop</option>
             <option value="anos 80">Anos 80</option>
             <option value="rock'n roll">Rock in Roll</option>
             <option value="hip-hop">Hip-Hop</option>
